@@ -4,8 +4,7 @@
     createHistoryChart,
     createList,
     createTable,
-    createSpinner,
-    d3,
+    createSpinner
 */
 
 describe('global charts.js', function()
