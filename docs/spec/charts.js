@@ -5,7 +5,6 @@
     createList,
     createTable,
     createSpinner,
-    document
 */
 
 describe('global charts.js', function()
