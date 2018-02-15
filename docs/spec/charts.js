@@ -5,6 +5,7 @@
     createList,
     createTable,
     createSpinner,
+    document
 */
 
 describe('global charts.js', function()
@@ -21,6 +22,20 @@ describe('global charts.js', function()
         it('should exist', function()
         {
             expect(createHistoryChart).toBeDefined();
+        });
+        it('should apply aggregation on single view and multiview charts equally', function()
+        {
+            spyOn(d3, 'tsv').and.callFake(function(url, rowHandler, callback)
+            {
+                callback(null, [
+                    {date: 'Jan 1 2018', 'times was awesome': 3},
+                    {date: 'Jan 2 2018', 'times was awesome': 13}
+                ]);
+                return {on: function(evt, cb) { cb(); }};
+            });
+            let canvas = document.createElement('canvas');
+            createHistoryChart(canvas, {find: function() { return {click: function(){}}; }});
+            // TODO: add expectations on behaviour of createHistory chart.
         });
     });
     describe('createList function', function()
